@@ -1,0 +1,21 @@
+import numpy as np 
+import pandas as pd
+# Number of Columns
+# DataType of columns
+# checking the blank rows
+# identify the key columns.
+# Identify the columns which are containing null/blank cells
+df1=pd.read_csv("/content/10_Property_stolen_and_recovered.csv")
+df2=pd.read_csv("/content/20_Victims_of_rape.csv")
+df3=pd.read_csv("/content/25_Complaints_against_police.csv")
+df4=pd.read_csv("/content/28_Trial_of_violent_crimes_by_courts.csv")
+df5=pd.read_csv("/content/29_Period_of_trials_by_courts.csv")
+
+a=df1.drop_duplicates(["Area_Name","Year"])
+b=df2.value_counts()
+c=df3.index
+d=df4.keys()
+e=df5.dtypes
+f=df2.replace(0,'N/A')
+
+print(a,b,c,d,e,f)
