@@ -1,0 +1,23 @@
+name_of_vehicle=input("enter name of vehicle :-")
+vehicles=["motorcycle","car","bus"]
+number_of_spots_in_parking=int(input("enter no of spots in parking :-"))
+spots_filled=[]
+
+vehicle_spots=["motorcycle","compact","large","car","bus"]
+if name_of_vehicle in vehicles :
+    count=1
+    for i in range(number_of_spots_in_parking):
+        spot=input("enter name of spot :-")
+        if spot in vehicle_spots :
+            spots_filled.append(spot)
+            count+=1
+        else:
+            print("you are unable to park your vehicle")
+    print(spots_filled )
+    l=len(spots_filled)
+    vacancies=number_of_spots_in_parking-(l)
+    print(vacancies)
+else:
+        print("please enter correct vehicle name :")
+
+        
