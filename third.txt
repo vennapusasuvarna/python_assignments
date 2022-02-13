@@ -1,0 +1,10 @@
+x= [1,6,7,4]
+m,n= 0,0
+for power in x:
+    if m== 0 and n == 0:
+        m,n = x[0], x[0]
+        print(m,n)
+    else:
+        m = min(m, power)
+        n = max(n, power)
+        print(m,n)
