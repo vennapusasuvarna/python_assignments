@@ -1,0 +1,115 @@
+import turtle
+import time
+import random
+game=turtle. Screen()
+game.title("suvarna snake game")
+game.bgcolor("orange")
+game.setup(width=500,height=500)
+game.tracer(0)
+
+head=turtle.Turtle()
+head.speed(0)
+head.shape("square")
+head.color("blue")
+head.penup()
+head.goto(0,100)
+head.direction="stop"
+
+
+def move():
+    if head.direction=="up":
+        y=head.ycor()
+        head.sety(y+20)
+    if head.direction=="down":
+        y=head.ycor()
+        head.sety(y-20)
+    if head.direction=="right":
+        x=head.xcor()
+        head.setx(x+20)
+    if head.direction=="left":
+        x=head.xcor()
+        head.setx(x-20)
+delay=0.2
+while True:
+    game.update()
+    move()
+    time.sleep(delay)
+def go_up():
+    if head.direction!="down":
+        head.direction="up"
+def go_down():
+    if head.direction!="up":
+        head.direction="down"
+def go_right():
+    if head.direction!="left":
+        head.direction="right"
+def go_left():
+    if head.direction!="right":
+        head.direction="left"
+game.listen()
+game.onkey(go_up,"w")
+game.onkey(go_down,"s")
+game.onkey(go_right,"d")
+game.onkey(go_left,"a")
+
+food=turtle.Turtle()
+food.speed(0)
+food.shape("square")
+food.color("orange")
+food.penup()
+food.shapesize(0.50,0.50)
+food.goto(0,0)
+
+if game.distance(food)<15:
+    x=random.randint(-290,290)
+    y = random.randint(-290, 290)
+    food.goto(x, y)
+
+s=[]
+body=turtle.Turtle()
+body.speed(0)
+body.shape("circle")
+body.color("brown")
+body.penup()
+s.append(body)
+
+for i in range (len(s)-1,0.-1):
+    x=s[i-1].xcor()
+    y=s[i-1].ycor()
+    s[i].goto(x,y)
+    if len(s)>0:
+        x=head.xcor()
+        y=head.ycor()
+        s[0].goto(x,y)
+    if head.xcor()>250 or head.xcor()<-250 or head.ycor>250 or head.ycor<-250:  
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction="stop"
+for segment in s:
+    segment.goto(900,900)
+s=[]
+for segment in s:
+    if segment.distance(head)<20:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction="stop"
+        for segment in s:
+            segment.goto(900,900)
+        segment.clear()
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Score: 0 High Score: {}".format(high_score), align="center", font=("Courier", 24, "normal"))
+
+score = 0
+high_score = 0
+score = score+10
+if score > high_score:
+    high_score = score
+score = 0
+pen.clear()
+pen.write("score: {} High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
